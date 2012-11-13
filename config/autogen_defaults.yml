@@ -2,11 +2,10 @@
 # You should edit this.
 default: &default
   ip: 192.168.200.1
-  orgname: vagrant.test
+  orgname: github.com
   vbox: debian-6.0.6-amd64
   memory_size: 512
-# Edit puppet_manifests and puppet_modules to point to paths you want
-# the puppetmaster to serve out.
+# But don't edit this unless you know what you're doing.
 puppetmaster:
   <<: *default
   ip: 192.168.200.2
@@ -14,10 +13,10 @@ puppetmaster:
   mounts:
     puppet_manifests:
       guest: /etc/puppet/manifests
-      host: ./bootstrap/puppetmaster/manifests
+      host: ~/github/puppet/manifests
     puppet_modules:
       guest: /etc/puppet/modules
-      host: ./bootstrap/puppetmaster/modules
+      host: ~/github/puppet/modules
     hitch_config:
       guest: /etc/vagrant/hitch
       host: ./config

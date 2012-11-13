@@ -8,8 +8,6 @@ require 'fileutils'
 require 'yaml'
 require 'pp'
 
-NODES_FILE = './config/nodes.yml'
-
 baseboxes = Dir.glob("definitions/*").select { |f| File.directory?(f) }.map! do |e|
   e.gsub(/definitions\//, '')
 end
@@ -108,6 +106,8 @@ namespace :vagrant do
         File.open(NODES_FILE, 'w') { |f| f.write(nodes.to_yaml) }
 
         puts "Node #{name} has been added. Open #{NODES_FILE} to further customize"
+
+        Rake::Task['vagrant:puppetmaster:provision'].invoke
       else
         puts "#{name} is already defined as:"
         puts nodes[name].to_yaml
@@ -124,6 +124,8 @@ namespace :vagrant do
         File.open(NODES_FILE, 'w') { |f| f.write(nodes.to_yaml) }
 
         puts "Node #{name} has been removed from #{NODES_FILE}"
+
+        Rake::Task['vagrant:puppetmaster:provision'].invoke
       else
         puts "#{name} is not defined"
       end
@@ -224,10 +226,6 @@ end
 end
 
 task "vagrant:basebox:build:all" => 'vagrant:node:initialize'
-
-['add', 'remove'].each do |t|
-  task "vagrant:node:#{t}" => 'vagrant:puppetmaster:reload_dns'
-end
 
 # Make sure a nodes.yml exists to be added to
 task 'vagrant:node:add' => 'vagrant:node:initialize'
