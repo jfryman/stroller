@@ -13,11 +13,11 @@ puppetmaster:
   mounts:
     puppet_manifests:
       guest: /etc/puppet/manifests
-      host: ./manifests
+      host: ./bootstrap/puppetmaster/manifests
     puppet_modules:
       guest: /etc/puppet/modules
-      host: ./modules
+      host: ./bootstrap/puppetmaster/modules
     hitch_config:
-      guest: /etc/vagrant_hitch
+      guest: /etc/vagrant/hitch
       host: ./config
   puppet:
