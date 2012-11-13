@@ -1,9 +1,9 @@
-Vagabond
+Stroller
 --------
 The ultimate companion to Vagrant.
 
 ## What is it?
-Vagabond is simply a series of automation tasks to automate the
+Stroller is simply a series of automation tasks to automate the
 boostrap/setup/usage/sharing of a complete Infrastructure Development
 Environment with Configuration Management[1]. 
 
