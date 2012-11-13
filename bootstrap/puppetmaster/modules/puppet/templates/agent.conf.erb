@@ -1,0 +1,8 @@
+[agent]
+    certname = <%= agent_certname %>
+    server = <%= puppetmaster %>
+    report = true
+    classfile = $vardir/classes.txt
+    localconfig = $vardir/localconfig
+    graph = true
+    pluginsync = true

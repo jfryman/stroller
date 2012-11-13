@@ -1,0 +1,9 @@
+[master]
+    storeconfigs = true
+    dbadapter = sqlite3
+    dblocation = <%= puppet['vardir'] %>/storeconfigs.sqlite
+    certname = <%= master_certname %>
+    dns_alt_names = <%= dns_alt_names.join(',') %>
+    ca_name = 'Puppet CA'
+    ssl_client_header = SSL_CLIENT_S_DN
+    ssl_client_verify_header = SSL_CLIENT_VERIFY

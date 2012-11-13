@@ -1,0 +1,7 @@
+#!/bin/bash
+
+find <%= puppet['ssldir'] %> -type f |
+grep -v ca | # Ignore all non-CA files
+grep -v <%= master_certname %> | # Ignore all certs related to PuppetMaster
+grep -v crl | # Also ignore the CRL
+xargs rm -rf # Delete any remaining vagrant SSL certificates.

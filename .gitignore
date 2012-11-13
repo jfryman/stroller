@@ -1,0 +1,9 @@
+.DS_Store
+*.swp
+vendor/gems
+.bundle/
+.tmp/
+*.iso
+.vagrant
+graph
+config/nodes.yml

@@ -1,0 +1,8 @@
+[main]
+    vardir = <%= puppet['vardir'] %>
+    logdir = <%= puppet['logdir'] %>
+    rundir = <%= puppet['rundir'] %>
+    modulepath = /etc/puppet/modules
+    user = <%= puppet['user'] %>
+    group = <%= puppet['group'] %>
+    pluginsync = true

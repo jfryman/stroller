@@ -1,0 +1,12 @@
+# This file is managed by Vagabond. You probably shouldn't mess with this
+# unless you know what you're doing.
+puppet_server:
+  server: 192.168.200.2
+  options:
+    - --no-daemonize
+    - --debug
+    - --onetime
+    - --graph
+    - --trace
+    - --pluginsync
+    - --configtimeout 600
