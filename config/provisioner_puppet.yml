@@ -1,6 +1,6 @@
 puppet:
-  manifest_file: site.pp
-  manifests_path: ./bootstrap/puppetmaster/manifests
+  manifest_file: vagrant.pp
+  manifests_path: ~/github/puppet/manifests
   modules:
     - ./bootstrap/puppetmaster/modules
   options:
