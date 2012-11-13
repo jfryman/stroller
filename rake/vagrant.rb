@@ -80,7 +80,7 @@ namespace :vagrant do
 
     desc "Re-initizlie a base nodes.yml (destructive)"
     task :reinitialize do
-      FileUtils.rm(NODES_FILE) if !File.exists?(NODES_FILE)
+      FileUtils.rm(NODES_FILE) if File.exists?(NODES_FILE)
       Rake::Task["vagrant:node:initialize"].invoke
     end
 
@@ -226,7 +226,7 @@ end
 task "vagrant:basebox:build:all" => 'vagrant:node:initialize'
 
 ['add', 'remove'].each do |t|
-  task "vagrant:node:#{t}" => 'vagrant:puppetmaster:provision'
+  task "vagrant:node:#{t}" => 'vagrant:puppetmaster:reload_dns'
 end
 
 # Make sure a nodes.yml exists to be added to

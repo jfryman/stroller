@@ -5,7 +5,8 @@ default: &default
   orgname: vagrant.test
   vbox: debian-6.0.6-amd64
   memory_size: 512
-# But don't edit this unless you know what you're doing.
+# Edit puppet_manifests and puppet_modules to point to paths you want
+# the puppetmaster to serve out.
 puppetmaster:
   <<: *default
   ip: 192.168.200.2
