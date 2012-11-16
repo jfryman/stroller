@@ -1,0 +1,16 @@
+zone "<%= zone_name %>" {
+  type <%= zone_type %>;
+<% if zone_type == 'slave' or zone_type == 'master' or zone_type == 'hint' -%>
+  file "<%= scope.lookupvar("bind::config_dir") %>/<%= zone_config_file %>";
+<% end -%>
+<% if zone_type == 'slave' -%>
+  masters { <%= zone_master %>; };
+<% end -%>
+<% if zone_type == 'forward' -%>
+  forwarders {
+<% zone_forward.each do |forwarder|-%>
+    <%= forwarder %>;
+<% end -%>
+  };
+<% end -%>
+};

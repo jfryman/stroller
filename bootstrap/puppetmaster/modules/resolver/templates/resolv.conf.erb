@@ -1,0 +1,11 @@
+domain <%= domain_name %>
+<% if !search_path == :undef -%>
+search <%= search_path.join(' ') %>
+<% end -%>
+<% if nameservers.class == String -%>
+nameserver <%= nameservers %>
+<% else -%>
+  <% nameservers.each do |n| -%>
+nameserver <%= n %>
+  <% end -%>
+<% end -%>
