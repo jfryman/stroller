@@ -40,7 +40,7 @@ node /puppetmaster/ inherits basenode {
   class { 'puppet::server':
     master_certname => 'puppetmaster',
     dns_alt_names   => [
-      '192.168.200.2',
+      '192.168.150.2',
       'puppetmaster',
       'puppet',
     ],
