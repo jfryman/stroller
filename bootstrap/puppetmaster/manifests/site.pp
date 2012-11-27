@@ -45,4 +45,8 @@ node /puppetmaster/ inherits basenode {
       'puppet',
     ],
   }
+
+  class { 'puppetdb': }
+  class { 'puppetdb::master::config': }
+
 }
