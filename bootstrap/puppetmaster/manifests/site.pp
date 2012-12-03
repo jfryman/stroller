@@ -4,6 +4,7 @@
 
 node basenode {
   include stdlib
+  class { 'repositories': } -> anchor { 'basenode::end': }
 }
 
 node /puppetmaster/ inherits basenode {
@@ -46,7 +47,7 @@ node /puppetmaster/ inherits basenode {
     ],
   }
 
-  class { 'puppetdb': }
-  class { 'puppetdb::master::config': }
-
+  Anchor['basenode::end']
+  -> class { 'puppetdb': }
+  -> class { 'puppetdb::master::config': }
 }
