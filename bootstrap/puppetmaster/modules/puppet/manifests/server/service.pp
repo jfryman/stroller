@@ -1,8 +1,10 @@
 class puppet::server::service {
-  service { 'puppetmaster':
+  Service {
     ensure     => running,
     enable     => true,
     hasstatus  => true,
     hasrestart => true,
   }
+
+  service { 'puppetmaster': }
 }

@@ -7,3 +7,4 @@ vendor/gems
 .vagrant
 graph
 config/nodes.yml
+config/autogen_defaults.yml

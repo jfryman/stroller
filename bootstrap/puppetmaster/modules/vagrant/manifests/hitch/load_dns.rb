@@ -7,19 +7,10 @@ hostclass 'vagrant::hitch::load_dns', :arguments => { "config" => AST::String.ne
   # the Vagrant YAML config and grab out all known IP addresses, and virtualize them
   nodes = YAML::load(File.open(config))
   orgname = nodes['default'].has_key?('orgname') ? nodes['default']['orgname'] : "vagrant.dev"
+  scope.find_definition('bind::a')
 
   nodes.each do |k,v|
     next if k == 'default'
-    virtual do
-      host "#{k}.#{orgname}",
-        :ensure       => 'present',
-        :ip           => v['ip'],
-        :host_aliases => k,
-        :tag          => 'vagrant:hitch:dns'
-      end
+    create_resource 'bind::a', "#{k}",:zone => "#{orgname}", :target => "#{v['ip']}"
   end
-
-  # Make sure that the importer also includes the realization of
-  # all of these hosts
-  include 'vagrant::hitch::realize_dns'
 end
