@@ -40,7 +40,7 @@ node /puppetmaster/ inherits basenode {
 
   # Install PuppetMaster
   class { 'puppet::server':
-    master_certname => 'puppetmaster',
+    master_certname => $::fqdn,
     dns_alt_names   => [
       '192.168.150.2',
       'puppetmaster',

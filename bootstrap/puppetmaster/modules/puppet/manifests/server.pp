@@ -9,15 +9,32 @@ class puppet::server(
 ) {
   include puppet
 
-  Class['puppet::repository']
-  -> anchor{ 'puppet::server::begin': }
-  -> class { 'puppet::server::package': }
-  -> class { 'puppet::server::config':
+  anchor { ['puppet::server::begin', 'puppet::server::end']: }
+
+  class { 'puppet::server::package': }
+  class { 'puppet::server::config':
     agent_certname   => $agent_certname,
     master_certname  => $master_certname,
     dns_alt_names    => $dns_alt_names,
     puppetmaster     => $puppetmaster,
   }
-  ~> class { 'puppet::server::service': }
-  -> anchor{ 'puppet::server::end': }
+  class { 'puppet::server::service': }
+
+  # We do some weird ordering here for several reasons
+  # 1) Puppet packages like to start services after they're installed, 
+  #    which has a tendency to break some things here. So, get the config
+  #    onto the system prior to packages.
+  # 2) Any changes to the Puppet::Server::Class should refresh the Puppet Master
+  # 3) Anchoring makes everything fun!
+  Class['puppet::repository']
+  -> Anchor['puppet::server::begin']
+  -> Class['puppet::server::config']
+  -> Class['puppet::server::package']
+
+  Class['puppet::server::config'] 
+  ~> Class['puppet::server::service']
+
+  Class['puppet::server::package']
+  -> Class['puppet::server::service']
+  -> Anchor['puppet::server::end']
 }

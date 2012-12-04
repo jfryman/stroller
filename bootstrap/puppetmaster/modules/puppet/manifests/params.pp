@@ -4,7 +4,7 @@ class puppet::params {
     vardir => '/var/lib/puppet',
     logdir => '/var/lib/puppet/log',
     rundir => '/var/lib/puppet/run',
-    ssldir => '/etc/puppet/ssl',
+    ssldir => '/var/lib/puppet/ssl',
     user   => 'puppet',
     group  => 'puppet',
   }

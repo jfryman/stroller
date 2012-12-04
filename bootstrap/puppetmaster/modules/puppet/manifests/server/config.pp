@@ -34,7 +34,11 @@ class puppet::server::config(
       'puppet/master.conf.erb'
     ),
   }
-
+  file { '/etc/init.d/puppetmaster':
+    ensure  => present,
+    mode    => '0755',
+    content => template('puppet/puppetmaster.init.erb'),
+  }
   file { '/etc/default/puppetmaster':
     ensure => present,
     mode   => '0644',
