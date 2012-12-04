@@ -8,13 +8,11 @@ node basenode {
 }
 
 node /puppetmaster/ inherits basenode {
-  $default_zone = 'github.com'
-
   class { 'vagrant::hitch::load_dns': }
 
   class { 'bind': }
 
-  bind::zone { $default_zone:
+  bind::zone { $::domain:
     zone_serial    => '1',
     zone_refresh   => '604800',
     zone_retry     => '86400',
@@ -24,16 +22,16 @@ node /puppetmaster/ inherits basenode {
   }
 
   bind::ns { 'ns':
-    zone => $default_zone,
+    zone => $::domain,
   }
 
   bind::record { 'ns':
-    zone   => $default_zone,
+    zone   => $::domain,
     target => $::ipaddress,
   }
 
   class { 'resolver::conf':
-    domain_name => $default_zone,
+    domain_name => $::domain,
     nameservers => $::ipaddress,
     stage       => 'setup_infra',
   }
