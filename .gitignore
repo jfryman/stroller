@@ -6,4 +6,5 @@ vendor/gems
 *.iso
 .vagrant
 graph
+README
 config/nodes.yml

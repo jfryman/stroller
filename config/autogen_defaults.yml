@@ -2,7 +2,7 @@
 # You should edit this.
 default: &default
   ip: 192.168.150.1
-  orgname: github.com
+  orgname: FILL_ME_IN
   vbox: debian-6.0.6-amd64
   memory_size: 512
 # But don't edit this unless you know what you're doing.
@@ -13,10 +13,10 @@ puppetmaster:
   mounts:
     puppet_manifests:
       guest: /etc/puppet/manifests
-      host: ~/github/puppet/manifests
+      host: FILL_ME_IN
     puppet_modules:
       guest: /etc/puppet/modules
-      host: ~/github/puppet/modules
+      host: FILL_ME_IN
     hitch_config:
       guest: /etc/vagrant/hitch
       host: ./config
