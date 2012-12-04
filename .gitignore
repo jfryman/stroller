@@ -6,5 +6,5 @@ vendor/gems
 *.iso
 .vagrant
 graph
+README
 config/nodes.yml
-config/autogen_defaults.yml
