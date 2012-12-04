@@ -22,7 +22,7 @@ may alternatively clone this repository and setup your own configuration
 for your environment. 
 
 Edit the defaults set in `config/autogen_defaults.yml`, and you should
-be off to the races. 
+be off to the races. Examples are included in the config directory.
 
 ## Provisioners
 ### Puppet
