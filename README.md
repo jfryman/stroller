@@ -21,8 +21,13 @@ manifests/cookbooks/bundles are, and then go and start developing! You
 may alternatively clone this repository and setup your own configuration
 for your environment. 
 
-Edit the defaults set in `config/autogen_defaults.yml`, and you should
-be off to the races. 
+### Quick Start
+'''
+rake stroller:orgname[github.com]
+rake vagrant:node:add[test123]
+rake vagrant:up[test123]
+'''
+
 
 ## Provisioners
 ### Puppet
