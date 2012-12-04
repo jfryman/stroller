@@ -8,7 +8,7 @@ node basenode {
 }
 
 node /puppetmaster/ inherits basenode {
-  $default_zone = 'github.com'
+  $default_zone = stroller_orgname()
 
   class { 'vagrant::hitch::load_dns': }
 
