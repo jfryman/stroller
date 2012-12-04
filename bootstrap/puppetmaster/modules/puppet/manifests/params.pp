@@ -4,16 +4,32 @@ class puppet::params {
     vardir => '/var/lib/puppet',
     logdir => '/var/lib/puppet/log',
     rundir => '/var/lib/puppet/run',
-    ssldir => '/etc/puppet/ssl',
+    ssldir => '/var/lib/puppet/ssl',
     user   => 'puppet',
     group  => 'puppet',
   }
 
-  $gems = [
-    'puppet',
-    'sqlite3',
-    'activerecord-jdbcsqlite3-adapter',
-  ]
+  $puppet = {
+    version  => '2.7.18-1puppetlabs1',
+    packages => [
+      'puppetmaster-common',
+      'puppetmaster',
+      'puppet',
+      'puppet-common',
+    ]
+  }
+
+  $puppetdb = {
+    version  => 'latest',
+    packages => [
+      'puppetdb',
+      'puppetdb-terminus'
+    ],
+    defaults => {
+      root   => '/etc/puppetdb',
+      ssldir => '/etc/puppetdb/ssl',
+    }
+  }
 
   $packages = [
     'libsqlite3-dev',

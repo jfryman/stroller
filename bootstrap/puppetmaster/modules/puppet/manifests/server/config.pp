@@ -34,8 +34,6 @@ class puppet::server::config(
       'puppet/master.conf.erb'
     ),
   }
-
-  # Shamelessly stolen from debian packages
   file { '/etc/init.d/puppetmaster':
     ensure  => present,
     mode    => '0755',
@@ -85,7 +83,7 @@ class puppet::server::config(
     managehome => true,
   }
 
-  group { "${puppet::params::defaults[group]}":
+  group { $puppet::params::defaults[group]:
     ensure => present,
   }
 }

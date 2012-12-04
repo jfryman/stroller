@@ -1,17 +1,11 @@
-class puppet::server::package inherits puppet::params {
-  package { $puppet::params::packages:
-    ensure => present,
+class puppet::server::package(
+  $puppet_version = $puppet::params::puppet['version']
+) inherits puppet::params {
+  Exec {
+    path => '/bin:/sbin:/usr/bin:/usr/sbin',
   }
-  -> package { $puppet::params::gems:
-    ensure   => present,
-    provider => 'gem',
-  }
-  ->
-  # Special Install of ActiveRecord 3.0.10 to
-  # combat http://projects.puppetlabs.com/issues/9290
-  # This also needs some work. God? -JDF (20121109)
-  package { 'activerecord':
-    ensure   => '3.0.10',
-    provider => 'gem',
+
+  package { $puppet::params::puppet['packages']:
+    ensure => $puppet_version,
   }
 }

@@ -4,3 +4,6 @@ gem install puppet -v 2.7.18 --no-ri --no-rdoc
 
 # Install Dependencies for Puppet
 apt-get -y install 'libaugeas-ruby1.8'
+
+# Cleanup Any generated SSL Certificates
+rm -rf `puppet --configprint ssldir`

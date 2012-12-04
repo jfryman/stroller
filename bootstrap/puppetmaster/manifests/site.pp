@@ -4,6 +4,7 @@
 
 node basenode {
   include stdlib
+  include ruby
 }
 
 node /puppetmaster/ inherits basenode {
@@ -37,12 +38,14 @@ node /puppetmaster/ inherits basenode {
     stage       => 'setup_infra',
   }
 
+  # Install PuppetMaster
   class { 'puppet::server':
-    master_certname => 'puppetmaster',
+    master_certname => $::fqdn,
     dns_alt_names   => [
       '192.168.150.2',
       'puppetmaster',
       'puppet',
     ],
   }
+  -> class { 'puppet::puppetdb': }
 }

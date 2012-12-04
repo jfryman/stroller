@@ -63,7 +63,7 @@ namespace :vagrant do
       desc "Delete all certificates with [<host>]"
       task :delete, :name do |t, args|
         name = args[:name]
-        vagrant.vms[:puppetmaster].channel.sudo("find /etc/puppet/ssl -type f | grep #{name} | xargs rm -rf")
+        vagrant.vms[:puppetmaster].channel.sudo("find `puppet --configprint ssldir`/ssl -type f | grep #{name} | xargs rm -rf")
       end
     end
   end
