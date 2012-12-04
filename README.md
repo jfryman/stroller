@@ -21,6 +21,8 @@ manifests/cookbooks/bundles are, and then go and start developing! You
 may alternatively clone this repository and setup your own configuration
 for your environment. 
 
+Edit all of the values in `config/autogen_defaults.yml` that are
+labeled `FILL_ME_IN`
 
 ## Provisioners
 ### Puppet
