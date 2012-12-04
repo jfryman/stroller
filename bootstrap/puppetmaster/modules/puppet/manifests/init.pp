@@ -4,4 +4,5 @@ class puppet(
 ) {
   include stdlib
 
+  class { 'puppet::repository': }
 }

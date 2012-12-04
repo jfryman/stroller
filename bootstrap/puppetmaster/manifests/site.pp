@@ -4,7 +4,7 @@
 
 node basenode {
   include stdlib
-  class { 'repositories': } -> anchor { 'basenode::end': }
+  include ruby
 }
 
 node /puppetmaster/ inherits basenode {
@@ -38,6 +38,7 @@ node /puppetmaster/ inherits basenode {
     stage       => 'setup_infra',
   }
 
+  # Install PuppetMaster
   class { 'puppet::server':
     master_certname => 'puppetmaster',
     dns_alt_names   => [
@@ -46,8 +47,5 @@ node /puppetmaster/ inherits basenode {
       'puppet',
     ],
   }
-
-  Anchor['basenode::end']
-  -> class { 'puppetdb': }
-  -> class { 'puppetdb::master::config': }
+  -> class { 'puppet::puppetdb': }
 }

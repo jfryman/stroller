@@ -1,4 +1,4 @@
-class puppet::server::service {
+class puppet::puppetdb::service {
   Service {
     ensure     => running,
     enable     => true,
@@ -6,5 +6,5 @@ class puppet::server::service {
     hasrestart => true,
   }
 
-  service { 'puppetmaster': }
+  service { 'puppetdb': }
 }

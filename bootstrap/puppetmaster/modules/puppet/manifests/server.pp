@@ -7,8 +7,11 @@ class puppet::server(
   $dns_alt_names    = undef,
   $puppetmaster     = undef
 ) {
+  include puppet
 
-  class { 'puppet::server::package': }
+  Class['puppet::repository']
+  -> anchor{ 'puppet::server::begin': }
+  -> class { 'puppet::server::package': }
   -> class { 'puppet::server::config':
     agent_certname   => $agent_certname,
     master_certname  => $master_certname,
@@ -16,4 +19,5 @@ class puppet::server(
     puppetmaster     => $puppetmaster,
   }
   ~> class { 'puppet::server::service': }
+  -> anchor{ 'puppet::server::end': }
 }
